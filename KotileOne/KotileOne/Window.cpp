@@ -82,6 +82,8 @@ bool Window::broadcast()
 {
 	MSG msg;
 
+	window->onUpdate();
+
 	//Runs while there are messages in the queue. Translates and Dispatches each message
 	while (::PeekMessage(&msg, NULL, 0, 0, PM_REMOVE) > 0)
 	{
@@ -89,9 +91,7 @@ bool Window::broadcast()
 		DispatchMessage(&msg);
 	}
 
-	window->onUpdate();
-
-	Sleep(0);
+	Sleep(1);
 	
 	return true;
 }
